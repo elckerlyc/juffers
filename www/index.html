@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <meta name="format-detection" content="telephone=no" />
+      <meta name="msapplication-tap-highlight" content="no" />
+      <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+      <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+      <!--meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" / -->
+      <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap: ws: https://ssl.gstatic.com;style-src 'self' 'unsafe-inline' data: blob:;media-src *;img-src * 'self' data: content:;script-src * 'unsafe-inline' 'unsafe-eval' data: blob:;">
+      <!-- Good default declaration:
+         * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+         * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+         * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+             * Enable inline JS: add 'unsafe-inline' to default-src
+             * Enable eval(): add 'unsafe-eval' to default-src
+         * Create your own at http://cspisawesome.com
+         -->
+      <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+      <link rel="stylesheet" type="text/css" href="css/index.css" />
+      <link rel="stylesheet" type="text/css" href="css/W3.css" />
+      <script type="text/javascript" src="js/datajuffer.js"></script>
+      <title>Libellen 1: waterjuffers</title>
+      <style>
+         .centered {
+         position: fixed;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         }
+         .footer {
+         position: fixed;
+         left: 0;
+         bottom: 0;
+         width: 100%;
+         background-color: gray;
+         color: white;
+         text-align: center;
+         }
+         .tekst {
+         font-family: georgia;
+         font-size : 10pt;
+         font-variant: normal;
+         text-transform: none;
+         }
+         .3IMG {max-width:300px;}
+         .splash {
+         background-color:gray;
+         background-image:linear-gradient(top, gray 0%, white 100%);
+         background-image:-webkit-linear-gradient(top, gray 0%, white 100%);
+         background-image:-ms-linear-gradient(top, gray 0%, white 100%);
+         background-image:-webkit-gradient(
+         linear,
+         left top,
+         left bottom,
+         color-stop(0, gray),
+         color-stop(0.51, white)
+         );
+         background-attachment:fixed;
+         }
+         .somestyle1 {
+         background-color:gray;
+         background-image:linear-gradient(top, black 0%, white 30%);
+         background-image:-webkit-linear-gradient(top, black 0%, white 30%);
+         background-image:-ms-linear-gradient(top, black 0%, white 30%);
+         background-image:-webkit-gradient(
+         linear,
+         left top,
+         left bottom,
+         color-stop(0, #303030),
+         color-stop(0.96, gray)
+         );
+         }
+         //IMG {max-width:255px;}
+         //BODY {background-color:#606060!important; }
+		 .w3-container {padding-bottom:4px;}
+		 .tekst1 {font-size:160%}
+		 .tekst2 {font-size:140%}
+		 .naam {font-size:120%}
+		 .w3-light-blue { background-color: #777777!important; }
+		 .w3-pale-red { background-color: #999999!important; }
+
+      </style>
+      <!-- ============================================================================================== -->
+      <script type="text/javascript">
+         <!--
+         
+         //aantal fotos =
+         
+         var tal=26 ;
+         
+         
+  var thearray=[];  //herhaald in showar()
+  for (a=1;a<tal;a++) {
+				 thearray.push(a);
+			 }
+         
+         var s1=0,s2=0;s3=0;s4=0;
+		 var p1=0;p2=0;p3=0;p4=0;p5=0;p6=0;p7=0;
+         
+         var side=1;
+         var cur=0;
+
+
+		    var soortjufb=[];
+			var soortjuft=[];
+
+
+// waar begint een soort en hoeveel zijn er:			
+soortjufb[1]=12;soortjuft[1]=9;  //blauw
+soortjufb[2]=3;soortjuft[2]=5;   //pantser
+soortjufb[3]=23;soortjuft[3]=2;   //rood
+soortjufb[4]=10;soortjuft[4]=2;   //gras
+soortjufb[5]=25;soortjuft[5]=1;  //breed
+soortjufb[6]=1;soortjuft[6]=2;    //beek
+soortjufb[7]=8;soortjuft[7]=2;   //winter
+soortjufb[8]=20;soortjuft[8]=2;  //roodoog
+
+//biotopen:
+var bios=[];
+bios[1]=[4,5,6]
+bios[2]=[1,5,7]
+bios[3]=[11,12,13,14,15,16]
+
+/*
+var bionaam=[];
+bionaam[1]="Beken en Rivieren"
+bionaam[2]="Plassen, Poelen, Vijvers, Meren"
+bionaam[3]="Vennen, Hoogveen"
+*/
+/*
+var biotekst=[];
+biotekst[1]="Langzaam of snelstromend water, rivieren, beken<br>Natuurlijke stromende wateren hebben in bochten stukken met langzamer en sneller stromend water. Vooral in die bochten vindt u deze soorten. "
+biotekst[2]="Stilstaand water, diepe meren of tijdelijke plassen. Verschillende soorten oeverbegroeing, dat alles betaalt mede welke soorten u aantreft."
+biotekst[3]="In de zure wateren in vennen van het hoogveen, nog op weinige plekken in Nederland te vinden, komen een aantal daardoor voor ons zeldzame juffers voor."
+*/
+
+function y2k(number) { return (number < 1000) ? number + 1900 : number; }
+
+function getWeek(year,month,day) {
+    var when = new Date(year,month,day);
+    var newYear = new Date(year,0,1);
+    var offset = 7 + 1 - newYear.getDay();
+    if (offset == 8) offset = 1;
+    var daynum = ((Date.UTC(y2k(year),when.getMonth(),when.getDate(),0,0,0) - Date.UTC(y2k(year),0,1,0,0,0)) /1000/60/60/24) + 1;
+    var weeknum = Math.floor((daynum-offset+7)/7);
+    if (weeknum == 0) {
+        year--;
+        var prevNewYear = new Date(year,0,1);
+        var prevOffset = 7 + 1 - prevNewYear.getDay();
+        if (prevOffset == 2 || prevOffset == 8) weeknum = 53; else weeknum = 52;
+    }
+    return weeknum;
+}
+
+var now = new Date();
+var wn= getWeek(y2k(now.getYear()),now.getMonth(),now.getDate());
+var wn1=wn;
+         
+         function flip() {
+         	//document.getElementById('hier').innerHTML=side
+         	
+         	if (side==1) {plus="b"} else {plus=""}
+         		for (i=1;i<tal ;i++ )
+         		{
+         				f=juffers[i].foto;
+         				//f=i;
+         				document.getElementById('img'+i).src="img/waterjufferstbgroot"+plus+f+".jpg"; 
+         			
+         		}
+         		document.getElementById('icon').src="img/duck"+plus+".png"
+         
+         	
+         	document.getElementById('knop1').focus();
+			if (side==0) {document.getElementById('knopw').innerHTML="M / v "}
+			else {document.getElementById('knopw').innerHTML="m / V "}
+         	if (side==1) {side=0} else {side=1}
+			
+         	}
+         
+         
+         	
+         // Script to open and close sidebar
+         function w3_open() {
+             document.getElementById("mySidebar").style.display = "block";
+             document.getElementById("myOverlay").style.display = "block";
+         	s4=1;
+         	
+         }
+          
+         function w3_close() {
+             document.getElementById("mySidebar").style.display = "none";
+             document.getElementById("myOverlay").style.display = "none";
+         	s4=0;
+         }
+
+		 function closeall() {
+			 closeme(1)
+			 closeme(2)
+			 closeme(3)
+			 w3_close()
+			 document.getElementById('newpage3').style.display='none'
+			 document.getElementById('newpage2').style.display='none'
+			 document.getElementById('newpage1').style.display='none'
+			 thearray=[];
+			 for (a=1;a<tal;a++) {
+				 thearray.push(a);
+			 }
+
+		 }
+         
+         function previous() {
+         	a=cur-1
+         	
+         	if (a>-1) 	{show(a)}
+			//document.getElementById('knop').focus();
+
+         }
+         function next() {
+         	a=cur+1
+         	
+         	if (a<(thearray.length)) 	{show(a)}
+			//document.getElementById('knop').focus();
+
+         }
+         
+         function MorV(a,b) {
+         	n=juffers[a].MV;
+         	if (n=="V") {
+         		if (b=="b") 
+         		{return ("&female;");}
+         		else
+         		{return ("&male;");}
+         	}
+         	if (n=="MV") {
+         		if (b=="b") 
+         		{return ("&male;&&female;");}
+         		else
+         		{return ("&male;");}
+         	}
+         	return (" ");
+         
+         }
+         function preshow(a) {
+			 //document.getElementById('newpage3').style.display='none'
+			 //document.getElementById('newpage2').style.display='none'
+			 //document.getElementById('newpage1').style.display='none'
+			 //alert (a.alt)
+			 for (i=0;i<thearray.length;i++) {
+				 if (thearray[i]==a.alt) {
+					 found=i;
+				 }
+			 }
+			
+			 show(found);
+		 }
+
+		 function showar(a) {
+			 thearray=[];
+			 for (i=1;i<tal;i++) {
+				 thearray.push(i);
+			 }
+			 show (a-1)
+		 }
+         function show(b) {
+         			cur=b;
+					a=thearray[b];
+					tala=thearray.length;
+         			if (side==1) {plus=""} else {plus="b"}
+         			f=juffers[a].foto;
+         			//f=a;
+         			document.getElementById('foto').src="img/waterjufferstbgroot"+plus+f+".jpg";
+         			document.getElementById('flip').style.visibility='visible';
+         			document.getElementById('naam').innerHTML=juffers[a].naam;
+         			document.getElementById('extranaam').innerHTML=juffers[a].extranaam;
+         			document.getElementById('familie').innerHTML=juffers[a].familie;
+         			document.getElementById('tekst').innerHTML=juffers[a].tekst;
+					document.getElementById('achterlijf').style.display='none'
+
+					//document.getElementById('naam').innerHTML += thearray + " -- " + cur
+
+					var bio="";
+					if (juffers[a].biotoop.indexOf("A")>-1) bio +=", vijver, poel, meer ";
+         			if (juffers[a].biotoop.indexOf("B")>-1) bio +=", rivier ";
+					if (juffers[a].biotoop.indexOf("C")>-1) bio +=", beek ";
+					if (juffers[a].biotoop.indexOf("D")>-1) bio +=", ven, veen ";
+					if (juffers[a].biotoop.indexOf("E")>-1) bio +=", open water ";
+					if (juffers[a].biotoop.indexOf("F")>-1) bio +=", drijvende bladeren ";
+					if (juffers[a].biotoop.indexOf("G")>-1) bio +=", riet, biezen ";
+					if (juffers[a].biotoop.indexOf("H")>-1) bio +=", ondergelopen vegetatie ";
+					if (juffers[a].biotoop.indexOf("I")>-1) bio +=", moeras ";
+					if (juffers[a].biotoop.indexOf("J")>-1) bio +=", veenmoeras ";
+
+					if (bio.charAt(0) == ',') bio=bio.substr(1)
+					bio= "Habitat: " + bio;
+
+					document.getElementById('biotoop').innerHTML=bio;
+
+					if (juffers[a].familie.indexOf("Waterjuffers")>-1) {
+						document.getElementById('achterlijf').style.display='block'
+					}
+         
+         			document.getElementById('copy').innerHTML="";
+         			xr=juffers[a].copyright1;
+         			document.getElementById("sex").innerHTML=MorV(a,plus);
+         			
+         			 if (plus=="b") {xr=juffers[a].copright2;}
+         
+         			if (xr) {document.getElementById('copy').innerHTML="foto &copy; "+xr;}
+         
+         
+         			document.getElementById('extratekst').innerHTML=juffers[a].extratekst;
+         			//document.getElementById('next').setAttribute('style', 'color:black !important');
+         			//document.getElementById('previous').setAttribute('style', 'color:black !important');
+					document.getElementById('next').disabled=false;
+         			document.getElementById('previous').disabled=false;
+
+         			if (b==(tala-1)) {
+         				//document.getElementById('next').setAttribute('style', 'color:#e0e0e0 !important');
+						document.getElementById('next').setAttribute('disabled', 'true');
+         			}
+         			if (b==0) {
+         				//document.getElementById('previous').setAttribute('style', 'color:#e0e0e0 !important');
+						document.getElementById('previous').setAttribute('disabled', 'true');
+         			}
+         
+         			document.getElementById('id01').style.display='block'
+         			document.getElementById('knop').focus();
+
+
+
+					//--- canvas
+					w0=(juffers[a].vanweek - 13) * 4
+					
+					w1=(juffers[a].totweek - 13) * 4
+
+					//document.getElementById('naam').innerHTML=juffers[a].naam+" / " + juffers[a].vanweek + " - " + juffers[a].totweek
+					
+					l2=w1-w0
+					c2 = (l2/2) +w0
+
+					l3=l2-((l2/100)*50)  //l3=l2-50%
+
+					var c = document.getElementById("myCanvas");
+					var ctx = c.getContext("2d");
+					ctx.clearRect(0, 0, 144,14);
+
+
+					
+
+					var grd = ctx.createRadialGradient(c2,7,1,c2,7,l3);
+					grd.addColorStop(0,"green");
+					grd.addColorStop(1,"white");
+
+					
+					//ctx.fillStyle='blue'
+
+					//ctx.fillRect(w0,0,l2,7);
+					ctx.fillStyle=grd
+					ctx.fillRect(w0,1,l2,12);
+
+					ctx.fillStyle='black'
+
+					
+					var m="MAMJJASON";
+					o=0
+					for (i=4;i<144;i+=16) {
+						x=m[o];
+						o++;
+						
+					ctx.fillText(x,i,10);	
+
+					}
+
+					//----
+         			s1=1;
+         }
+         
+         function flipme() {
+         			b=cur
+					a=thearray[b]
+         			flip();
+         			f=juffers[a].foto;
+         			//f=a;
+         			if (side==1) {plus=""} else {plus="b"}
+         			document.getElementById('foto').src="img/waterjufferstbgroot"+plus+f+".jpg";
+         			
+         			document.getElementById('copy').innerHTML="";
+         			x=juffers[a].copyright1;
+         			document.getElementById("sex").innerHTML=MorV(a,plus);
+         			if (plus=="b") {x=juffers[a].copright2;}
+         			if (x) {document.getElementById('copy').innerHTML="foto &copy; "+x;}
+					if (side==1) {document.getElementById('flip').innerHTML="M / v "}
+					else {document.getElementById('flip').innerHTML="m / V "}
+         			document.getElementById('knop').focus();
+         }
+         function splashme() {
+         
+         
+         
+         
+         	x=document.getElementById('splash');
+         	// Code for Chrome, Safari and Opera
+         	//x.addEventListener("webkitAnimationStart", myStartFunction);
+         	//x.addEventListener("webkitAnimationEnd", myEndFunction);
+         
+         // Standard syntax
+         	//x.addEventListener("animationstart", myStartFunction);
+         	//x.addEventListener("animationend", myEndFunction);
+         	x.style.display='block';
+         	s5=1;
+         	window.setTimeout(closeSplash, 4000);
+         	//
+         
+         //document.getElementById('hier').innerHTML=document.getElementById('splash').getAttribute("display");
+         
+         
+         	//
+         }
+         
+         function myEndFunction() {
+         document.getElementById('body').style.opacity=1;
+         }
+         function myStartFunction() {
+         document.getElementById('body').style.opacity=0.85;
+         }
+         
+		 function openswitch(a) {
+			 document.getElementById('newpage1').style.display='none';p1=0;
+			 document.getElementById('newpage2').style.display='none';p2=0;
+			 if (a==1) {document.getElementById('newpage1').style.display='block';p1=1;}
+			 if (a==2) {document.getElementById('newpage2').style.display='block';p2=1;}
+
+		 }
+         function openme(a) {
+			 p=a-10;
+         	if (a==1) {document.getElementById('id01').style.display='block';s1=1;}
+         	if (a==2) {document.getElementById('id02').style.display='block';s2=1;}
+         	if (a==3) {document.getElementById('id03').style.display='block';s3=1;}
+         	if (a==5) {document.getElementById('splash').style.display='block';s5=1;}
+			if (p==1) {document.getElementById('newpage1').style.display='block';p1=1;}
+			if (p==2) {document.getElementById('newpage2').style.display='block';p2=1;}
+			if (p==3) {document.getElementById('newpage3').style.display='block';p3=1;}
+			if (p==4) {document.getElementById('newpage4').style.display='block';p4=1;}
+			if (p==5) {document.getElementById('newpage5').style.display='block';p5=1;}
+			if (p==6) {document.getElementById('newpage6').style.display='block';p6=1;}
+			if (p==7) {document.getElementById('newpage7').style.display='block';p7=1;}
+         	
+         }
+         function closeme(a) {
+			 p=a-10;
+         	if (a==1) {document.getElementById('id01').style.display='none';s1=0;}
+         	if (a==2) {document.getElementById('id02').style.display='none';s2=0;}
+         	if (a==3) {document.getElementById('id03').style.display='none';s3=0;}
+         	if (a==5) {document.getElementById('splash').style.display='none';s5=0;}
+         	if (p==1) {document.getElementById('newpage1').style.display='none';p1=0;}
+			if (p==2) {document.getElementById('newpage2').style.display='none';p2=0;}
+			if (p==3) {document.getElementById('newpage3').style.display='none';p3=0;}
+			if (p==4) {document.getElementById('newpage4').style.display='none';p4=0;}
+			if (p==5) {document.getElementById('newpage5').style.display='none';p5=0;}
+			if (p==6) {document.getElementById('newpage6').style.display='none';p6=0;}
+			if (p==7) {document.getElementById('newpage7').style.display='none';p7=0;}
+
+         }
+         function closeSplash() {
+         	//alert('ja hoor');
+         	document.getElementById('splash').style.display='none';
+         	//document.getElementById('deviceready').style.display='none';
+         	s5=0;
+         }
+
+
+		function saveMe(a) {
+			localStorage.setItem('someSetting', a);
+		}
+		function showsoort(a) {
+			thearray=[];
+			//document.getElementById('newpage2').style.display='none';
+			document.getElementById('titelS').innerHTML=groepen[a].naam //+ " nummer" + a + " beg "+soortjufb[a] + " tal "+ soortjuft[a];
+			document.getElementById('tekstS').innerHTML=groepen[a].tekst
+			document.getElementById('tekstS1').innerHTML=groepen[a].extratekst
+			for (p=1;p<27;p++) {
+				document.getElementById("plaatje"+p).src=""
+				document.getElementById("plaatje"+p).style.visibility="hidden"
+				document.getElementById("naam"+p).innerHTML=""
+			}
+			for (p=1;p<=soortjuft[a];p++) {
+				n=p+soortjufb[a]-1;
+				document.getElementById("plaatje"+p).style.visibility="visible"
+				document.getElementById("plaatje"+p).src="img/waterjufferstbgroot"+n+".jpg"
+				document.getElementById("plaatje"+p).alt=n;
+				document.getElementById("naam"+p).innerHTML=juffers[n].naam
+				thearray.push(n);
+			}
+
+			
+			openme(13);
+
+
+		}
+
+		function doen1(item,index) {
+				ind=index+1;
+				document.getElementById("plaatje"+ind).style.visibility="visible"
+				document.getElementById("plaatje"+ind).src="img/waterjufferstbgroot"+item+".jpg"
+				document.getElementById("plaatje"+ind).alt=item;
+				document.getElementById("naam"+ind).innerHTML=juffers[item].naam
+
+		}
+
+		function showbio(a) {
+			thearray=[];
+			if (a=='J') a='I'; //een moeras is een moeras
+			//document.getElementById('newpage5').style.display='none';
+
+
+			if (a=="A") {bionaam="Vijvers, Poelen, Meren";
+						biotekst="Allerlei stilstaand water";
+						biotekst1="";}
+			if (a=="B") {bionaam="Rivieren";
+						biotekst="Brede, langzaam stromende wateren";
+						biotekst1="";}
+			if (a=="C") {bionaam="Beken";
+						biotekst="(Snel) stromende, smalle, ondiepe waters";
+						biotekst1="";}
+			if (a=="F") {bionaam="Drijvende bladeren";
+						biotekst="Grote, drijvende planten op het water";
+						biotekst1="";}
+			if (a=="D") {bionaam="Vennen en venen";
+						biotekst="Meer of minder zure waters";
+						biotekst1="";}
+			
+			if (a=="G") {bionaam="Riet";
+						biotekst="Oevers en wateren begroeid met riet of biezen";
+						biotekst1="";}
+			if (a=="H") {bionaam="Ondergelopen vegetatie";
+						biotekst="Tijdelijk ondergelopen gebieden";
+						biotekst1="";}
+			if (a=="I") {bionaam="Moeras";
+						biotekst="Zoet watermoerassen of zure veenmoerassen";
+						biotekst1="";}
+
+
+			document.getElementById('titelS').innerHTML=bionaam //+ " nummer" + a + " beg "+soortjufb[a] + " tal "+ soortjuft[a];
+			document.getElementById('tekstS').innerHTML=biotekst
+			document.getElementById('tekstS1').innerHTML=biotekst1
+			for (p=1;p<27;p++) {
+				document.getElementById("plaatje"+p).src=""
+				document.getElementById("plaatje"+p).style.visibility="hidden"
+				document.getElementById("naam"+p).innerHTML=""
+			}
+			p=1;
+			for (i=1;i<25;i++) {
+				if (juffers[i].biotoop.indexOf(a)>-1) {
+					document.getElementById("plaatje"+p).style.visibility="visible"
+					document.getElementById("plaatje"+p).src="img/waterjufferstbgroot"+i+".jpg"
+					document.getElementById("plaatje"+p).alt=i;
+						document.getElementById("naam"+p).innerHTML=juffers[i].naam
+						thearray.push(i);
+						p++;
+						//if (p>10) p=10;
+				}
+			}
+
+			
+
+			//document.getElementById('newpage3').style.display='block';
+			openme(13);
+
+		}
+
+		function showvlieg(a) {
+
+			
+			thearray=[];
+			wn1=wn1+a;
+			week=wn1;
+			if (a==0) week=wn;
+
+			document.getElementById('titelS').innerHTML="VLIEGTIJDEN";
+			document.getElementById('tekstS').innerHTML="<h4>Welke juffers vliegen in week " + week +"?</h4><br>Vliegtijden kunnen enorm vari&euml;ren afhankelijk van het weer, dit zijn gemiddelden.";
+
+			week1=week;
+			week2=week;
+			if (a==6) { //lente
+				week1=9
+				week2=21
+				document.getElementById('tekstS').innerHTML="<h4>Welke juffers vliegen in de lente?</h4><br>Vliegtijden kunnen enorm vari&euml;ren afhankelijk van het weer, dit zijn gemiddelden.";
+			}
+			if (a==7) { //zomer
+				week1=25
+				week2=37
+				document.getElementById('tekstS').innerHTML="<h4>Welke juffers vliegen in de zomer?</h4><br>Vliegtijden kunnen enorm vari&euml;ren afhankelijk van het weer, dit zijn gemiddelden.";
+			}
+			if (a==8) { //herfst
+				week1=40
+				week2=48
+				document.getElementById('tekstS').innerHTML="<h4>Welke juffers vliegen in de herfst?</h4><br>Vliegtijden kunnen enorm vari&euml;ren afhankelijk van het weer, dit zijn gemiddelden.";
+			}
+
+			
+			for (p=1;p<27;p++) {
+				document.getElementById("plaatje"+p).src=""
+				document.getElementById("plaatje"+p).style.visibility="hidden"
+				document.getElementById("naam"+p).innerHTML=""
+			}
+			p=1;
+			openme(13);
+			p=1;
+			for (i=1;i<25;i++) {
+				//document.getElementById('titelS').innerHTML+=juffers[i].vanweek + "-" + p + "/"
+				if (juffers[i].vanweek <= week2) {
+					
+					if (juffers[i].totweek >= week1) {
+						document.getElementById("plaatje"+p).style.visibility="visible"
+						document.getElementById("plaatje"+p).src="img/waterjufferstbgroot"+i+".jpg"
+						document.getElementById("naam"+p).innerHTML=juffers[i].naam 
+						document.getElementById("plaatje"+p).alt=i;
+						thearray.push(i);
+						p++;
+						//if (p>10) p=10;
+
+				}
+			}
+
+		}
+		openme(13);
+		}
+
+         //-->
+      </script>
+   </head>
+   <body id=body class="ww3-light-grey w3-content somestyle" style="max-width:1600px;background-color:#282828!important" onload=splashme()>
+      <!-- Sidebar/menu -->
+      <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
+         <br>
+         <div class="w3-container">
+            <a href="#" onclick="w3_close()" style='text-decoration:none' class="w34-hide-large w3-right w3-large w3-padding w3-hover-grey" title="close menu"><img src="img/kruis.png" width="35" height="35" border="0" alt="">
+            </a>
+            <img src="img/duck.png" style="width:20%;" class="w3-round"><br><br>
+            <h4><b>Stichting Stippen.nl</b></h4>
+            
+          
+         <!--     -->
+
+		<div class="w3-container" onclick=openme(2) >
+
+		<button class="w3-button w3-white w3-border w3-border-red w3-round-large" style="width:230px">Over de App</button>
+
+
+         </div>
+		 
+
+
+
+		<div class="w3-container" onclick=openme(11) >
+
+		<button id=deze class="w3-button w3-white w3-border w3-border-red w3-round-large" style="width:230px">Hoofdindeling <input type=radio name=keus style='float:right' value="1" id=radio1 onclick=saveMe(1)></button>
+
+         </div>
+		 <div class="w3-container" onclick=openme(12) >
+
+		<button class="w3-button w3-white w3-border w3-border-red w3-round-large" style="width:230px">Indeling als tekst <input type=radio name=keus style='float:right' value="2" id=radio2 onclick=saveMe(2)></button>
+
+
+         </div>
+
+		  <div class="w3-container" onclick=closeall() >
+
+		<button class="w3-button w3-white w3-border w3-border-red w3-round-large" style="width:230px">Fotos van alle juffers <input type=radio name=keus style='float:right' value="3" id=radio3 onclick=saveMe(3)></button>
+
+
+         </div>
+
+		  <div class="w3-container" onclick=openme(14) >
+
+		<button class="w3-button w3-white w3-border w3-border-red w3-round-large" style="width:230px">Achterlijftekening<br> Blauwe waterjuffers <input type=radio name=keus id=radio4 style='float:right' value="4" onclick=saveMe(4)></button>
+
+
+         </div>
+
+		 <div class="w3-container" onclick=openme(15)>
+
+		<button class="w3-button w3-white w3-border w3-border-red w3-round-large" style="width:230px">Biotoop<br><small>Waar vind ik deze juffers</small><input type=radio name=keus id=radio4 style='float:right' value="5" onclick=saveMe(5)></button>
+
+
+         </div>
+
+		  <div class="w3-container" onclick=openme(16)>
+
+		<button class="w3-button w3-white w3-border w3-border-red w3-round-large" style="width:230px">Vliegtijd<br><small>Wanneer vliegen deze juffers</small><input type=radio name=keus id=radio4 style='float:right' value="6" onclick=saveMe(6)></button>
+
+
+         </div>
+
+
+		 <div class="w3-container" onclick="window.plugins.socialsharing.share('Ik vond een leuke eenden- en ganzenapp, iets voor jou?', 'Eenden, ganzen en zwanen', 'http://www.stipnet.nl/apps/mallardhi.jpg', 'https://play.google.com/store/apps/details?id=nl.stippen.eendvogels')">
+         <button class="w3-button w3-white w3-border w3-border-red w3-round-large" style="width:230px">Deel deze App</button>
+		 </div><br>
+
+         <br>
+         <!--     -->
+         <br>
+		 <small><input type=radio checked=checked name=not> = Start de App op met deze pagina.<br><i> Wanneer u kort op het rondje klikt, zal deze app de volgende keer met de bijbehorende rubriek opstarten.</i></small>
+         <i>
+            <div id=version style='font-size:8pt;padding:10px;color:gray'></div>
+         </i>
+         <!-- div class="w3-bar-block">
+            <a href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">Vlinders in de Tuin</a> 
+            
+            <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">CONTACT</a>
+            </div -->
+         <!-- div class="w3-panel w3-large">
+            <i class="fa fa-facebook-official w3-hover-opacity"></i>
+            <i class="fa fa-instagram w3-hover-opacity"></i>
+            <i class="fa fa-snapchat w3-hover-opacity"></i>
+            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+            <i class="fa fa-twitter w3-hover-opacity"></i>
+            <i class="fa fa-linkedin w3-hover-opacity"></i>
+            </div -->
+      </nav>
+      <!-- Overlay effect when opening sidebar on small screens -->
+      <div class="w3-overlay w34-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+      <!-- !PAGE CONTENT! -->
+      <div class="ww3-main" style="margin-left:auto;margin-right:auto;max-width:870px;border:2px solid #313131">
+         <!-- Header -->
+         <header id="portfolio">
+            <a href="#" ><img id=icon src="img/duck.png" style="widtht:14%;max-width:60px;padding-right:10px;padding-top:12px" class="w3-circle w3-right sw3-margin w34-hide-large sw3-hover-opacity" style="box-shadow: 2px 2px 4px #000000;" onclick=flip()></a>
+            <span class="w3-button w34-hide-large w3-xxlarge " onclick="w3_open()"> &equiv; <b id=hier style="font-size:12pt;color:#909090;font-family:'Arial Black', Gadget, serif">&nbsp;&nbsp;&nbsp;Libellen I: waterjuffers</b></span>
+            <div class="w3-container">
+               <b id=hier1></b>
+               <!-- div class="w3-section w3-bottombar w3-padding-16">
+                  <span class="w3-margin-right">Filter:</span> 
+                  <button class="w3-button w3-black">ALL</button>
+                  <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Design</button>
+                  <button class="w3-button w3-white w3-hide-small"><i class="fa fa-photo w3-margin-right"></i>Photos</button>
+                  <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Art</button>
+                  </div -->
+            </div>
+         </header>
+         <!-- First Photo Grid-->
+         <div class="w3-row-padding" id="row1">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot1.jpg" onclick="showar(1)" id="img1" style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot2.jpg" onclick="showar(2)" id="img2" style="width:100%">
+            </div>
+         </div>
+         <div class="w3-row-padding" id="row2">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot3.jpg" onclick="showar(3)" id="img3" style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot4.jpg" onclick="showar(4)" id="img4" style="width:100%">
+            </div>
+         </div>
+         <div class="w3-row-padding" id="row3">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot5.jpg" onclick="showar(5)" id="img5" style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot6.jpg" onclick="showar(6)" id="img6" style="width:100%">
+            </div>
+         </div>
+         <div class="w3-row-padding" id="row3">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot7.jpg" onclick="showar(7)" id="img7" style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot8.jpg" onclick="showar(8)" id="img8" style="width:100%">
+            </div>
+         </div>
+         <div class="w3-row-padding" id="row4">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot9.jpg" onclick="showar(9)" id="img9" style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot10.jpg" onclick="showar(10)" id="img10" style="width:100%">
+            </div>
+         </div>
+         <div class="w3-row-padding" id="row5">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot11.jpg" onclick="showar(11)" id="img11" style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot12.jpg" onclick="showar(12)" id="img12" style="width:100%">
+            </div>
+         </div>
+         <div class="w3-row-padding" id="row6">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot13.jpg" onclick="showar(13)" id="img13" style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot14.jpg" onclick="showar(14)" id="img14" style="width:100%">
+            </div>
+         </div>
+         <div class="w3-row-padding" id="row7">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot15.jpg" onclick="showar(15)" id="img15" style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot16.jpg" onclick="showar(16)" id="img16" style="width:100%">
+            </div>
+         </div>
+         <div class="w3-row-padding" id="row8">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot17.jpg" onclick="showar(17)" id="img17" style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot18.jpg" onclick="showar(18)" id="img18" style="width:100%">
+            </div>
+         </div>
+         <div class="w3-row-padding" id="row9">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot19.jpg" onclick="showar(19)" id="img19" style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot20.jpg" onclick="showar(20)" id="img20" style="width:100%">
+            </div>
+         </div>
+         <div class="w3-row-padding" id="row10">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot21.jpg" onclick="showar(21)" id="img21" style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot22.jpg" onclick="showar(22)" id="img22" style="width:100%">
+            </div>
+         </div>
+         <div class="w3-row-padding" id="row11">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot23.jpg" onclick="showar(23)" id="img23" style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot24.jpg" onclick="showar(24)" id="img24" style="width:100%">
+            </div>
+         </div>
+         <div class="w3-row-padding" id="row12">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot25.jpg" onclick="showar(25)" id="img25" style="width:100%">
+            </div>
+            <!-- div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/blauwewaterjuffers1.jpg" onclick="showar(0)" id="img26" style="width:100%">
+            </div -->
+         </div>
+      </div>
+      <div class="happ">
+         <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">&copy; stichting Stippen.nl</p>
+         </div>
+         <div><img></div>
+      </div>
+      <div class=footer style='opacity: 0.9;border-width:4px 0 0 0;border-style:solid;border-color: #767676'>
+         <button id="knopw" onclick=flip() class="w3-btn w3-round-xlarge w3-border w3-gray " style='outline:none!important'>M / v</button>
+         <button id="knop1" style='width:1px;height:1px;opacity: 0.01;'> </button>
+      </div>
+      <!-- Trigger/Open the Modal -->
+      <!-- The Modal -->
+      <div id="id01" class="w3-modal w3-animate-zoom" style='z-index:6;padding-top:10px'>
+         <div class="w3-modal-content" style=';min-height:100%!important'>
+            <div class="w3-container" 
+               class="w3-button w3-display-topright">
+               <br>
+               <img id=foto style='width:100%' >
+               <div onclick="closeme(1)"  style='position:absolute;right:16px;top:20px;font-size:28pt;font-weight:500;color:white;text-shadow:2px 2px 8px #FFFFFF;' ><a  href=# id=knop style='text-decoration:none'><img src="img/kruis1.png" width="45" height="45" border="0" alt="" ></a></div>
+               <div class=tekst style='min-height:100%'>
+                  <b><span id=naam></span></b>&nbsp;&nbsp;<b><span id=sex style='font-weight:100;font-size:12pt'></span></b>&nbsp;&nbsp;
+                  <i><span id=extranaam></span></i>&nbsp;&nbsp;
+                  <span style='font-variant:small-caps' id=familie></span><br>
+				  <div>
+				  <br>
+				   <i>
+                     <small>
+                        <span id=copy></span>&nbsp;&nbsp;&nbsp;
+						<canvas id="myCanvas" width="144" height="14" style="border:1px solid #d3d3d3;">
+						</canvas>
+						
+                     </small>
+                  </i>
+				  <br><br>
+				  <button onclick=previous() 
+                  class="w3-btn w3-round-xlarge w3-border w3-white" id=previous>Vorige</button>&nbsp;&nbsp;&nbsp;
+               <button onclick=flipme() class="w3-btn w3-round-xlarge w3-border w3-white " id=flip>M / v</button>
+               &nbsp;&nbsp;&nbsp;<button onclick=next() 
+                  class="w3-btn w3-round-xlarge w3-border w3-white" id=next>Volgende</button>  <br>
+				  </div>
+
+                  <p id=tekst></p>
+                  <p id=extratekst></p>
+				  
+					 <div id='achterlijf' style='display:none;float:right;'>Zie de <button onclick="openme(14)" style='display:inline-block;padding:2px;margin:0' class="w3-btn w3-round-xlarge w3-border w3-white " id=achterlijf>&nbsp;Achterlijftekening&nbsp;</button> voor de `streepjescode` van het achterlijf.<br><br></div>
+                 <small>
+                        <p id=biotoop></p>
+                     </small><br><br>
+               </div>
+               
+            </div>
+         </div>
+      </div>
+      <!-- The Modal II -->
+      <div id="id02" class="w3-modal" style='padding-top:10px;'>
+         <div class="w3-modal-content" '>
+            <div class="w3-container" 
+               class="w3-button w3-display-topright">
+               <br>
+               <img id=foto style='max-width:100%' >
+               <div onclick="closeme(2)"  style='position:absolute;right:10px;top:20px;font-size:28pt;font-weight:500;color:white;text-shadow:2px 2px 8px #FFFFFF;'><img src="img/kruis.png" width="45" height="45" border="0" alt=""></div>
+               <div class=tekst style='font-size:12pt;'><img src="img/duck.png" style='float:right;padding:20px;max-width:160px'>
+                   In deze App vindt u alle waterjuffers van Nederland.<br><br>
+			Hoewel het onmogelijk is om alle vari&euml;teiten, afwijkingen en levensfases hier te tonen, hopen we dat u tenminste de groep vindt waarin de juffer hoort, en mogelijk de soort.<br><br>
+			Voor sommige moeilijker gevallen verwijzen wij graag naar de website van <a onclick="window.open('http://www.libellen.goyatlah.nl');" style='text-decoration:underline'>Goyatlah</a>.
+            <br><br>
+                  Deze App is gemaakt door stichting Stippen.nl, die u misschien kent van 
+                  <a onclick="window.open('http://www.stippen.nl');" style='text-decoration:underline'> Stippen.nl, lieveheersbeestjes van Nederland en Belgi&euml;</a><br><br>
+                  Veel plezier gewenst met deze App, en we hopen dat dit het begin is van een prettige natuurstudie!<br>
+                  <br><br>
+               </div><br><br>
+			   De meeste foto's zijn van Goyatlah &copy;, met bijdragen van ... &copy;.<br><br>
+                  <small>Met hartelijke dank!<br><br><br>
+				  Teksten van Stippen<br>
+                  Gebruik van foto's en tekst uitsluitend met toestemming.<br>
+                  Ga doorvoor naar <a onclick="window.open('http://www.stipnet.nl/apps/apps.html');" style='text-decoration:underline'>&copy; Stipnet</a><small><br><br>
+               <br><br><br><br><br> 
+            </div>
+         </div>
+      </div>
+      <!-- The Modal III -->
+      <div id="id03" class="w3-modal" style='padding-top:10px'>
+         <div class="w3-modal-content">
+            <div class="w3-container" 
+               class="w3-button w3-display-topright">
+               <br>
+               <img id=foto style='max-width:100%' >
+               <div onclick="closeme(3)"  style='position:absolute;right:10px;top:20px;font-size:28pt;font-weight:500;color:white;text-shadow:2px 2px 8px #FFFFFF;'><img src="img/kruis.png" width="45" height="45" border="0" alt=""></div>
+               <div class=tekst style='font-size:12pt;padding:10px ''>
+                  <img src="img/duckb.png" style='float:right;padding:20px;max-width:165px'><br><br>
+                  De meeste foto's zijn van Goyatlah &copy;, met bijdragen van ... &copy;.<br><br>
+                  <small>Met hartelijke dank!<br><br><br>
+				  Teksten van Stippen<br>
+                  Gebruik van foto's en tekst uitsluitend met toestemming.<br>
+                  Ga doorvoor naar <a onclick="window.open('http://www.stipnet.nl/apps/apps.html');" style='text-decoration:underline'>&copy; Stipnet</a><small><br><br>
+                  <br><br>
+                  <div style='font-size:9pt!important;font-family:verdana!important;padding:20px'>
+                  </div>
+                  <br><br><br><br><br>
+                  <br><br>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Splash  -->
+      <div id="splash" class="w3-modal  w3-animate-zoomout splash " style='display:block;padding-top:10px;;animation-fill-mode: forwards;animation-delay: 3s;' onclick="closeme(5)"  >
+         <div class="w3-modal-content">
+            <div class="w3-container splash" 
+               class="w3-button w3-display-topright">
+               <br>
+               <img id=foto style='width:100%;max-width:300px' src="img/duck.png">
+               <div style='position:absolute;display:table;top:90px;left:16%;width:300px;margin:0 auto;border:0px solid red'>
+                  <img id="foto1" width="125"  style='border:4px solid gray' alt="">&nbsp;&nbsp;&nbsp;
+                  <img id="foto2" width="125"  style='border:4px solid gray'  alt="">
+               </div>
+               <div class=tekst style='position:absolute;font-size:12pt;color:gray;top:200px'><img src="img/duckb.png" style='float:right;padding:20px;max-width:200px'>
+                  Bijna alle foto's zijn (c) Goyatlah, met bijdragen van ....<br><br>
+                  Teksten Stichting Stippen.nl, tekstbijdragen Goyatlah.<br><br>
+                  <small>Met hartelijke dank!<br></small>
+                  <br><br>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Hoofd Indeling newpage1 -->
+      <div id="newpage1" class="w3-modal  w3-animate-zoom " style="sposition:absolute;top:0px;width:100%;boder:2px solid brown;height:100%;display:none;position:fixed!important;padding-top:10px;background-color:#282828!important;color:#eeeeee;">
+         <div class="w3-container">
+            <a href="#" onclick=closeme(11)  style='text-decoration:none' class="w34-hide-large w3-right w3-large w3-padding w3-hover-grey" title="close menu"><img src="img/kruis.png" width="35" height="35" border="0" alt="">
+            </a>
+            <img src="img/duck.png" style="width:20%;" class="w3-round"><br><br>
+            <h4><b>I N D E L I N G</b>
+               <button style='float:right;background-color:gray;color:black' onclick=openswitch(2) >Tekst</button>
+            </h4>
+         </div>
+         <div class="w3-row-padding" id="row13">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/blauwewaterjuffers1.jpg" onclick="showsoort(1)"  style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/pantserjuffers.jpg" onclick="showsoort(2)"  style="width:100%">
+            </div>
+         </div>
+         <div class="w3-row-padding" id="row13">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/rodejuffers.jpg" onclick="showsoort(3)"  style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/grasjuffers.jpg" onclick="showsoort(4)"  style="width:100%">
+            </div>
+         </div>
+         <div class="w3-row-padding" id="row14">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/breedscheenjuffers.jpg" onclick="showsoort(5)"  style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/beekjuffers.jpg" onclick="showsoort(6)"  style="width:100%">
+            </div>
+         </div>
+         <div class="w3-row-padding" id="row13">
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/winterjuffers1.jpg" onclick="showsoort(7)"  style="width:100%">
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/roodoogjuffers.jpg" onclick="showsoort(8)"  style="width:100%">
+            </div>
+         </div>
+
+		 
+
+      </div>
+      <!-- Indeling TEKST newpage2-->
+      <div id="newpage2" class="w3-modal  w3-animate-zoom " style="top:0px;width:100%;height:100%;display:none;position:fixed!important;padding-top:10px;background-color:#333333;!important;color:#eeeeee;">
+      <div class="w3-container">
+         <a href="#" onclick=closeme(12) style='text-decoration:none' class="w34-hide-large w3-right w3-large w3-padding w3-hover-grey" title="close menu"><img src="img/kruis.png" width="35" height="35" border="0" alt="">
+         </a>
+         <img src="img/duck.png" style="width:20%;" class="w3-round"><br><br>
+         <h4><b>I N D E L I N G</b>
+            <button style='float:right;background-color:gray;color:black' onclick=openswitch(1) >Fotos</button>
+         </h4>
+      </div>
+      <div class="w3-container w3-light-blue" onclick="showsoort(1)">
+         <h4>Blauwe waterjuffers</h4>
+         Van bovenaf gezien bestaat het achterlijf uit meerdere blauwe en zwarte banen.<br><br>
+      </div>
+      <div class="w3-container w3-pale-red" onclick="showsoort(2)">
+         <h4>Pantserjuffers</h4>
+         Groen of bruin metalic glanzende juffers in rust met half geopende vleugels, vaak hangend aan takken.<br><br>
+      </div>
+         <div class="w3-container w3-light-blue" onclick="showsoort(3)">
+            <h4>'Rode juffers'</h4>
+            Het achterlijf is voornamelijk of deels rood.<br><br>
+         </div>
+         <div class="w3-container w3-pale-red" onclick="showsoort(4)">
+            <h4>Grasjuffers</h4>
+            Van bovenaf gezien is het achterlijf zwart, behalve het een na laatste segment, dat een blauwe 'lantaarn' vormt.<br><br>
+         </div>
+         <div class="w3-container w3-light-blue" onclick="showsoort(5)">
+            <h4>Breedscheenjuffers</h4>
+            De voorste poten zijn, vooral bij de mannetjes, opmerkelijk breed.<br><br>
+         </div>
+         <div class="w3-container w3-pale-red" onclick="showsoort(6)">
+            <h4>Beekjuffers</h4>
+            Deze juffers hebben zwarte vleugels of een zwarte band in de vleugels.<br><br>
+         </div>
+         <div class="w3-container w3-light-blue" onclick="showsoort(7)">
+            <h4>Winterjuffers</h4>
+            Dunne, bruine juffers die ook 's winters in Nederland zijn.s.<br><br>
+         </div>
+         <div class="w3-container w3-pale-red" onclick="showsoort(8)">
+            <h4>Roodoogjuffers</h4>
+            Met duidelijk zichtbare rode ogen.<br><br>
+         </div>
+         <div class="w3-container w3-light-blue" onclick="openme(17)" >
+            <h4>Anders</h4>
+            Geen van bovenstaande omschrijvingen klopt.<br><br>
+         </div>
+      </div>
+
+<!-- Groepen details -->
+
+<div id="newpage3" class="w3-modal  w3-animate-zoom " style="z-index:4;sposition:absolute;top:0px;width:100%;boder:2px solid brown;height:100%;display:none;position:fixed!important;padding-top:10px;background-color:#cccccc!important;color:#101010;font-size:120%">
+      <div class="w3-container">
+         <a href="#" onclick=closeme(13)  style='text-decoration:none' class="w34-hide-large w3-right w3-large w3-padding w3-hover-grey" title="close menu"><img src="img/kruis.png" width="35" height="35" border="0" alt="">
+         </a>
+         <img src="img/duck.png" style="width:20%;" class="w3-round"><br><br>
+         <h4><b id='titelS'>Blauwe waterjuffers</b>
+            
+         </h4>
+		 <div id='tekstS' class=tekst1>
+		 </div>
+		 <hr>
+		 <div id='tekstS1' class=tekst2>
+		 </div>
+      </div>
+		<div class="w3-row-padding" >
+            <div class="w3-cell" style="float:left;width:48%;padding:1%" id='rij1'>
+               <img src="img/waterjufferstbgroot1.jpg" alt=1 onclick="preshow(this)" id="plaatje1" style="width:100%">
+			   <span class=naam id=naam1></span>
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot2.jpg" alt=1 onclick="preshow(this)" id="plaatje2" style="width:100%">
+			   <span class=naam id=naam2></span>
+            </div>
+         </div>
+		<div class="w3-row-padding" >
+            <div class="w3-cell" style="float:left;width:48%;padding:1%" id='rij2'>
+               <img src="img/waterjufferstbgroot1.jpg" alt=1
+			   onclick="preshow(this)" id="plaatje3" style="width:100%">
+			   <span class=naam id=naam3></span>
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot2.jpg" alt=1 onclick="preshow(this)" id="plaatje4" style="width:100%">
+			   <span class=naam id=naam4></span>
+            </div>
+         </div>
+		 <div class="w3-row-padding" >
+            <div class="w3-cell" style="float:left;width:48%;padding:1%" id='rij3'>
+               <img src="img/waterjufferstbgroot1.jpg" alt=1 onclick="preshow(this)" id="plaatje5" style="width:100%">
+			   <span class=naam id=naam5></span>
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot2.jpg" alt=1 onclick="preshow(this)" id="plaatje6" style="width:100%">
+			   <span class=naam id=naam6></span>
+            </div>
+         </div>
+		 <div class="w3-row-padding" >
+            <div class="w3-cell" style="float:left;width:48%;padding:1%" id='rij4'>
+               <img src="img/waterjufferstbgroot1.jpg" alt=1 onclick="preshow(this)" id="plaatje7" style="width:100%">
+			   <span class=naam id=naam7></span>
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot2.jpg" alt=1 onclick="preshow(this)" id="plaatje8" style="width:100%">
+			   <span class=naam id=naam8></span>
+            </div>
+         </div>
+		 <div class="w3-row-padding" >
+            <div class="w3-cell" style="float:left;width:48%;padding:1%" id='rij5'>
+               <img src="img/waterjufferstbgroot1.jpg" alt=1 onclick="preshow(this)" id="plaatje9" style="width:100%">
+			   <span class=naam id=naam9></span>
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot2.jpg" alt=1 onclick="preshow(this)" id="plaatje10" style="width:100%">
+			   <span class=naam id=naam10></span>
+            </div>
+         </div>
+
+	<div class="w3-row-padding" >
+            <div class="w3-cell" style="float:left;width:48%;padding:1%" id='rij1'>
+               <img src="img/waterjufferstbgroot1.jpg" alt=1 onclick="preshow(this)" id="plaatje11" style="width:100%">
+			   <span class=naam id=naam11></span>
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot2.jpg" alt=1 onclick="preshow(this)" id="plaatje12" style="width:100%">
+			   <span class=naam id=naam12></span>
+            </div>
+         </div>
+		<div class="w3-row-padding" >
+            <div class="w3-cell" style="float:left;width:48%;padding:1%" id='rij2'>
+               <img src="img/waterjufferstbgroot1.jpg" alt=1
+			   onclick="preshow(this)" id="plaatje13" style="width:100%">
+			   <span class=naam id=naam13></span>
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot2.jpg" alt=1 onclick="preshow(this)" id="plaatje14" style="width:100%">
+			   <span class=naam id=naam14></span>
+            </div>
+         </div>
+		 <div class="w3-row-padding" >
+            <div class="w3-cell" style="float:left;width:48%;padding:1%" id='rij3'>
+               <img src="img/waterjufferstbgroot1.jpg" alt=1 onclick="preshow(this)" id="plaatje15" style="width:100%">
+			   <span class=naam id=naam15></span>
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot2.jpg" alt=1 onclick="preshow(this)" id="plaatje16" style="width:100%">
+			   <span class=naam id=naam16></span>
+            </div>
+         </div>
+		 <div class="w3-row-padding" >
+            <div class="w3-cell" style="float:left;width:48%;padding:1%" id='rij4'>
+               <img src="img/waterjufferstbgroot1.jpg" alt=1 onclick="preshow(this)" id="plaatje17" style="width:100%">
+			   <span class=naam id=naam17></span>
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot2.jpg" alt=1 onclick="preshow(this)" id="plaatje18" style="width:100%">
+			   <span class=naam id=naam18></span>
+            </div>
+         </div>
+		 <div class="w3-row-padding" >
+            <div class="w3-cell" style="float:left;width:48%;padding:1%" id='rij5'>
+               <img src="img/waterjufferstbgroot1.jpg" alt=1 onclick="preshow(this)" id="plaatje19" style="width:100%">
+			   <span class=naam id=naam19></span>
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot2.jpg" alt=1 onclick="preshow(this)" id="plaatje20" style="width:100%">
+			   <span class=naam id=naam20></span>
+            </div>
+         </div>	 
+
+		 <div class="w3-row-padding" >
+            <div class="w3-cell" style="float:left;width:48%;padding:1%" id='rij3'>
+               <img src="img/waterjufferstbgroot1.jpg" alt=1 onclick="preshow(this)" id="plaatje21" style="width:100%">
+			   <span class=naam id=naam21></span>
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot2.jpg" alt=1 onclick="preshow(this)" id="plaatje22" style="width:100%">
+			   <span class=naam id=naam22></span>
+            </div>
+         </div>
+		 <div class="w3-row-padding" >
+            <div class="w3-cell" style="float:left;width:48%;padding:1%" id='rij4'>
+               <img src="img/waterjufferstbgroot1.jpg" alt=1 onclick="preshow(this)" id="plaatje23" style="width:100%">
+			   <span class=naam id=naam23></span>
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot2.jpg" alt=1 onclick="preshow(this)" id="plaatje24" style="width:100%">
+			   <span class=naam id=naam24></span>
+            </div>
+         </div>
+		 <div class="w3-row-padding" >
+            <div class="w3-cell" style="float:left;width:48%;padding:1%" id='rij5'>
+               <img src="img/waterjufferstbgroot1.jpg" alt=1 onclick="preshow(this)" id="plaatje25" style="width:100%">
+			   <span class=naam id=naam25></span>
+            </div>
+            <div class="w3-cell" style="float:left;width:48%;padding:1%">
+               <img src="img/waterjufferstbgroot2.jpg" alt=1 onclick="preshow(this)" id="plaatje26" style="width:100%">
+			   <span class=naam id=naam26></span>
+            </div>
+         </div>	 
+
+
+</div> 
+<!--einde groependetails -->
+
+
+<!-- Achterlijf patronen -->
+
+<div id="newpage4" class="w3-modal  w3-animate-zoom " style="z-index:7;top:0px;width:100%;height:100%;display:none;position:fixed!important;padding-top:10px;background-color:#333333;!important;color:#eeeeee;">
+      <div class="w3-container">
+         <a href="#" onclick=closeme(14)  style='text-decoration:none' class="w34-hide-large w3-right w3-large w3-padding w3-hover-grey" title="close menu"><img src="img/kruis.png" width="35" height="35" border="0" alt="">
+         </a>
+         <img src="img/duck.png" style="width:20%;" class="w3-round"><br><br>
+         <h5><b id='titelS'>Achterlijfpatronen blauwe waterjuffers</b>
+            
+         </h5>
+		 
+		 <hr>
+		 
+      </div>
+		<div class="w3-row-padding" >
+            <div class="w3-cell" style="float:left;width:98%;padding:1%" id='rij1'>
+				<h6>Patronen van (uitgekleurde, volwassen) <b>mannetjes</b>.</h6>
+               <img src="img/patronenM.jpg" alt=1 onclick="preshow(this)" id="plaatje1" style="width:100%">
+			   <div><h5>
+			   1 Watersnuffel 2 Variabele- 3 Azuur- <br>4 Mercuur- 5 Gaffel- 6 Speer- 7 Maan- <br>8 Donkere- 9 Kanaal-waterjuffer
+			   </h5></div>
+            </div>
+			
+            <div class="w3-cell" style="float:left;width:98%;padding:1%">
+			<hr>
+			<h6>Patronen van <b>vrouwtjes</b>.</h6>
+               <img src="img/patronenV.jpg" alt=1 onclick="preshow(this)" id="plaatje2" style="width:100%">
+            </div>
+         </div>
+		
+<br><br>
+</div> 
+<!--einde achterlijfpatronen -->
+	  
+<!-- Biotopen of Habitats newpage5-->
+      <div id="newpage5" class="w3-modal  w3-animate-zoom " style="z-index:3;top:0px;width:100%;height:100%;display:none;position:fixed!important;padding-top:10px;;background-color:#333333;!important;color:#eeeeee;font-size:200%">
+      <div class="w3-container">
+         <a href="#" onclick=closeme(15) style='text-decoration:none' class="w34-hide-large w3-right w3-large w3-padding w3-hover-grey" title="close menu"><img src="img/kruis.png" width="35" height="35" border="0" alt="">
+         </a>
+         <img src="img/duck.png" style="width:20%;" class="w3-round"><br><br>
+         <h4><b>B I O T O O P</b>
+            
+         </h4>
+      </div>
+      <div class="w3-container w3-light-blue" onclick="showbio('A')">
+         <h4>Vijvers, Poelen, Meren</h4>
+         Allerlei stilstaand water.<br><br>
+      </div>
+      <div class="w3-container w3-pale-red" onclick="showbio('B')">
+         <h4>Rivieren</h4>
+         Brede, langzaam stromende wateren.<br><br>
+      </div>
+         <div class="w3-container w3-light-blue" onclick="showbio('C')">
+            <h4>Beken</h4>
+            (Snel) stromende, smalle, ondiepe waters.<br><br>
+         </div>
+		 
+		 
+		 <div class="w3-container w3-pale-red" onclick="showbio('F')">
+            <h4>Drijvende bladeren</h4>
+            Grotere drijvende planten op het water<br><br>
+         </div>
+		 <div class="w3-container w3-light-blue" onclick="showbio('G')">
+            <h4>Riet</h4>
+            Oevers en wateren begroeid met riet of biezen.<br><br>
+         </div>
+		 <div class="w3-container w3-pale-red" onclick="showbio('H')">
+            <h4>Ondergelopen vegetatie</h4>
+            Tijdelijk ondergelopen gebieden.<br><br>
+         </div>
+		 <div class="w3-container w3-light-blue" onclick="showbio('I')">
+            <h4>Moeras</h4>
+            Zoet watermoerassen of zure veenmoerassen.<br><br>
+         </div>
+		 <div class="w3-container w3-pale-red" onclick="showbio('D')">
+            <h4>Vennen en venen</h4>
+            Meer of minder zure waters.<br><br>
+         </div>
+         
+         <div class="w3-container w3-light-blue" onclick="openme(17)" >
+            <h4>Anders</h4>
+            Geen van bovenstaande omschrijvingen klopt.<br><br>
+         </div>
+      </div>
+
+
+
+<!-- vliegtijden -->
+      <div id="newpage6" class="w3-modal  w3-animate-zoom " style="sposition:absolute;top:0px;width:100%;boder:2px solid brown;height:100%;display:none;position:fixed!important;padding-top:10px;;background-color:#333333;!important;color:#eeeeee;font-size:200%">
+      <div class="w3-container">
+         <a href="#" onclick=closeme(16)  style='text-decoration:none' class="w34-hide-large w3-right w3-large w3-padding w3-hover-grey" title="close menu"><img src="img/kruis.png" width="35" height="35" border="0" alt="">
+         </a>
+         <img src="img/duck.png" style="width:20%;" class="w3-round"><br><br>
+         <h4><b>V l i e g t i j d</b>
+            
+         </h4>
+      </div>
+      <div class="w3-container w3-light-blue" onclick="showvlieg(0)">
+         <h4>Welke juffers vliegen nu?</h4>
+         Deze week <br><br>
+      </div>
+      <div class="w3-container w3-pale-red" onclick="showvlieg(-1)">
+         <h4>Een week eerder</h4>
+         (Klik herhaaldelijk om eerdere weken te zien)<br><br>
+      </div>
+         <div class="w3-container w3-light-blue" onclick="showvlieg(1)">
+            <h4>Een week later </h4>
+            (Klik herhaaldelijk om volgende weken te zien)<br><br>
+         </div>
+        <div class="w3-container w3-pale-red" onclick="showvlieg(6)">
+            <h4>Voorjaar </h4>
+            maart - mei<br><br>
+         </div>
+		 <div class="w3-container w3-light-blue" onclick="showvlieg(7)">
+            <h4>Zomer </h4>
+            juni - augustus<br><br>
+         </div>
+		 <div class="w3-container w3-pale-red" onclick="showvlieg(8)">
+            <h4>Herfst </h4>
+            september - november<br><br>
+         </div>
+         
+      </div>
+
+
+
+      <!-- Anders -->
+    <div id="newpage7" class="w3-modal" style='padding-top:10px;z-index:7'>
+      <div class="w3-modal-content">
+         <div class="w3-container" 
+            class="w3-button w3-display-topright">
+            <br>
+            <img id=foto style='max-width:100%' >
+            <div onclick="closeme(17)"  style='position:absolute;right:10px;top:20px;font-size:28pt;font-weight:500;color:white;text-shadow:2px 2px 8px #FFFFFF;'><img src="img/kruis.png" width="45" height="45" border="0" alt=""></div>
+            <div style='font-size:12pt;padding:10px '><img src="img/duckb.png" style='float:left;padding:20px;max-width:265px'><br><br>
+               Veel soorten hebben andersgekleurde variaties. Individuen kunnen minder goed uitgekleurd zijn. Pas uitgeslopen dieren zijn nog bleek en hebben opvallend glinsterende vleugels. Oudere dieren zijn vaal of juist donker. <br><br>
+               Al deze uitzonderingen gaan buiten de opzet van deze app. <br><br>
+               Komt u er niet uit, dan kunnen we van harte de uitgebreide website van Goyatlah, die ook bijna alle foto's van deze app heeft gemaakt, van harte aanbevelen.<br><br>
+               Ga daarvoor naar <a onclick="window.open('http://libellen.goyatlah.nl/');" style='text-decoration:underline'>Libellen in Nederland</a><br><br>
+               <br><br>
+               <br><br><br><br><br>
+               <br><br>
+            </div>
+         </div>
+      </div>
+	</div>
+      <!-- Sripts -->
+      <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript" src="js/index.js"></script>
+      <script type="text/javascript">
+         app.initialize();
+      </script>
+      <script>
+         var x = Math.floor((Math.random() * 25) + 1);
+            document.getElementById("foto1").src = "img/waterjufferstbgroot" + x + ".jpg";
+         document.getElementById("foto2").src = "img/waterjufferstbgrootb" + x + ".jpg";
+      </script>
+   </body>
+</html>
