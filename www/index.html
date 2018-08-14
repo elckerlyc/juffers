@@ -681,14 +681,14 @@ var wn1=wn;
 
 		 <div class="w3-container" onclick=openme(15)>
 
-		<button class="w3-button w3-white w3-border w3-border-red w3-round-large" style="width:230px">Biotoop<br><small>Waar vind ik deze juffers</small><input type=radio name=keus id=radio4 style='float:right' value="5" onclick=saveMe(5)></button>
+		<button class="w3-button w3-white w3-border w3-border-red w3-round-large" style="width:230px">Biotoop<br><small>Waar vind ik deze juffers</small><input type=radio name=keus id=radio5 style='float:right' value="5" onclick=saveMe(5)></button>
 
 
          </div>
 
 		  <div class="w3-container" onclick=openme(16)>
 
-		<button class="w3-button w3-white w3-border w3-border-red w3-round-large" style="width:230px">Vliegtijd<br><small>Wanneer vliegen deze juffers</small><input type=radio name=keus id=radio4 style='float:right' value="6" onclick=saveMe(6)></button>
+		<button class="w3-button w3-white w3-border w3-border-red w3-round-large" style="width:230px">Vliegtijd<br><small>Wanneer vliegen deze juffers</small><input type=radio name=keus id=radio6 style='float:right' value="6" onclick=saveMe(6)></button>
 
 
          </div>
@@ -957,11 +957,11 @@ var wn1=wn;
                <br>
                <img id=foto style='width:100%;max-width:300px' src="img/duck.png">
                <div style='position:absolute;display:table;top:90px;left:16%;width:300px;margin:0 auto;border:0px solid red'>
-                  <img id="foto1" width="125"  style='border:4px solid gray' alt="">&nbsp;&nbsp;&nbsp;
-                  <img id="foto2" width="125"  style='border:4px solid gray'  alt="">
+                  <img id="foto1" width="250"  style='border:4px solid #606060' alt="">&nbsp;&nbsp;&nbsp;
+                  <!-- img id="foto2" width="125"  style='border:4px solid gray'  alt="" -->
                </div>
-               <div class=tekst style='position:absolute;font-size:12pt;color:gray;top:200px'><img src="img/duckb.png" style='float:right;padding:20px;max-width:200px'>
-                  Bijna alle foto's zijn (c) Goyatlah, met bijdragen van ....<br><br>
+               <div class=tekst style='position:absolute;font-size:12pt;color:gray;top:300px'><img src="img/duckb.png" style='float:right;padding:20px;max-width:200px'>
+                  Bijna alle foto's zijn (c) Goyatlah, met bijdragen van M. van der Wel en ....<br><br>
                   Teksten Stichting Stippen.nl, tekstbijdragen Goyatlah.<br><br>
                   <small>Met hartelijke dank!<br></small>
                   <br><br>
@@ -1016,7 +1016,7 @@ var wn1=wn;
 
       </div>
       <!-- Indeling TEKST newpage2-->
-      <div id="newpage2" class="w3-modal  w3-animate-zoom " style="top:0px;width:100%;height:100%;display:none;position:fixed!important;padding-top:10px;background-color:#333333;!important;color:#eeeeee;">
+      <div id="newpage2" class="w3-modal  w3-animate-zoom " style="top:0px;width:100%;height:100%;display:none;position:fixed!important;padding-top:10px;background-color:#333333;!important;color:#eeeeee;font-size:240%">
       <div class="w3-container">
          <a href="#" onclick=closeme(12) style='text-decoration:none' class="w34-hide-large w3-right w3-large w3-padding w3-hover-grey" title="close menu"><img src="img/kruis.png" width="35" height="35" border="0" alt="">
          </a>
@@ -1254,7 +1254,7 @@ var wn1=wn;
 <!--einde achterlijfpatronen -->
 	  
 <!-- Biotopen of Habitats newpage5-->
-      <div id="newpage5" class="w3-modal  w3-animate-zoom " style="z-index:3;top:0px;width:100%;height:100%;display:none;position:fixed!important;padding-top:10px;;background-color:#333333;!important;color:#eeeeee;font-size:200%">
+      <div id="newpage5" class="w3-modal  w3-animate-zoom " style="z-index:3;top:0px;width:100%;height:100%;display:none;position:fixed!important;padding-top:10px;;background-color:#333333;!important;color:#eeeeee;font-size:240%">
       <div class="w3-container">
          <a href="#" onclick=closeme(15) style='text-decoration:none' class="w34-hide-large w3-right w3-large w3-padding w3-hover-grey" title="close menu"><img src="img/kruis.png" width="35" height="35" border="0" alt="">
          </a>
@@ -1307,7 +1307,7 @@ var wn1=wn;
 
 
 <!-- vliegtijden -->
-      <div id="newpage6" class="w3-modal  w3-animate-zoom " style="sposition:absolute;top:0px;width:100%;boder:2px solid brown;height:100%;display:none;position:fixed!important;padding-top:10px;;background-color:#333333;!important;color:#eeeeee;font-size:200%">
+      <div id="newpage6" class="w3-modal  w3-animate-zoom " style="sposition:absolute;top:0px;width:100%;boder:2px solid brown;height:100%;display:none;position:fixed!important;padding-top:10px;;background-color:#333333;!important;color:#eeeeee;font-size:240%">
       <div class="w3-container">
          <a href="#" onclick=closeme(16)  style='text-decoration:none' class="w34-hide-large w3-right w3-large w3-padding w3-hover-grey" title="close menu"><img src="img/kruis.png" width="35" height="35" border="0" alt="">
          </a>
@@ -1372,9 +1372,12 @@ var wn1=wn;
          app.initialize();
       </script>
       <script>
+	  document.getElementById("foto1").src = "img/waterjufferstbgrootb" + 2 + ".jpg";
+	  /*
          var x = Math.floor((Math.random() * 25) + 1);
             document.getElementById("foto1").src = "img/waterjufferstbgroot" + x + ".jpg";
          document.getElementById("foto2").src = "img/waterjufferstbgrootb" + x + ".jpg";
+		 */
       </script>
    </body>
 </html>

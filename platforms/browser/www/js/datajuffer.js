@@ -42,7 +42,7 @@ juffers[3] = obj;
 
 obj = { naam : "Tangpantserjuffer " , extranaam : " Lestes dryas " , foto : "4" , 
 			familie : "Pantserjuffers - Lestidae" , copyright1 : "Goyatlah" , copright2 : "Goyatlah" ,
-			tekst : "Metalic glanzende juffers met bij de mannetjes blauwe berijping op het eerste en maar  twee-derde vn het tweede achterlijfssegment segment" , MV : "V" ,
+			tekst : "Metalic glanzende juffers met bij de mannetjes blauwe berijping op het eerste en maar twee-derde van het tweede achterlijfssegment " , MV : "V" ,
 			vanweek : "20" , totweek : "36" ,
 			biotoop : "ADG" ,
 			extratekst :  "Bij vrouwtjes is de berijping van het eerste segment eerder rond dan hoekig getekend.<br /><br />Tangpantserjuffers zijn wat steviger dan de gewone pantserjuffers. Ze komen overigens vaak samen voor.<br />" 
